@@ -1,0 +1,19 @@
+﻿@model WebApplication_MVC_API.Models.MeetingModel
+@{
+    ViewBag.Title = "Thanks";
+}
+
+<h2>Thanks, @Model.name !</h2>
+<div class="lead">
+    @if (Model.participationStatus == true)
+    {
+        <label>We are glad you will join us! </label>
+        <label>Thanks for feedback.</label>
+        @Html.Action("participants","home") <label> will join us also with you!</label>
+    }
+    else
+    {
+        <label>Alright! Maybe next time we will see you in us! Thanks for feedback!</label>
+    }
+</div>
+

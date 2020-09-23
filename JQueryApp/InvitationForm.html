@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <!--<script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="Scripts/modernizr-2.8.3.js"></script>-->
+</head>
+<body>
+    <!--<div class="panel panel-success" style="width:300px; margin:auto; margin-top:75px;">-->
+    <div class="container">
+        <img id="ajax-loader" src="ajax-loader.gif" style="display:none;width:100px;" />
+        <hr />
+        <div id="results" name="results" class="alert alert-success" style="display:none;">
+            <h3>Informations added.</h3> 
+            <h4>All attendees are:</h4>
+            <h4><span id="attendees"></span></h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel panel-title panel-heading">We are inviting you too!</div>
+                    <div class="panel-body">
+
+                        <form id="InvitationForm" name="InvitationForm">
+
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <input type="text" id="name" name="name" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail: </label>
+                                <input type="text" id="email" name="email" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Would you join to meeting?</label>
+                                <select id="participationStatus" name="participationStatus" class="form-control">
+                                    <option value="true">YES</option>
+                                    <option value="false">NO</option>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <input class="btn btn-info" type="submit" value="Gönder" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function GetAttendees() {
+            var html = [];
+            $.getJSON("https://localhost:44374/api/invitation/GetAttendees", function (data) {
+                $.each(data, function (key, value) {
+                    html.push("<label class='label label-success'>" + value.name+"</label> ")
+                });
+                $("#attendees").empty().append(html);
+            })
+        }
+
+        $("#InvitationForm").submit(function (event) {
+            event.preventDefault();//page shouldnt be post back.
+            $.ajax({
+                url: "https://localhost:44374/api/invitation/addd",
+                data: {
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    participationStatus: $("#participationStatus").val()
+                },
+                type: "Post",
+                beforeSend: function () {
+                    $("#ajax-loader").show();
+                },
+                complete: function () {
+                    $("#ajax-loader").hide();
+                },
+                success: function () {
+                    if ($("#participationStatus").val() == "true") {
+                        GetAttendees();
+                    }
+                    $("#results").show();
+                },
+                error: function () {
+
+                    alert("Talep esnasında sorun oluştu.Yeniden deneyin");
+
+                }
+            });
+        });
+    </script>
+
+    <!--<script>
+        function CallPageMethod() {
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "https://localhost:44374/api/invitation/addd",
+
+                data: {
+                    "name": $("#name").val(),
+                    "email": $("#email").val(),
+                    "participationStatus": $("#participationStatus").val()
+                },
+
+                contentType: "application / json; charset = utf - 8",
+
+                dataType: "json",
+
+                success: function () {
+
+                    $("results").show();
+
+                },
+
+                error: function () {
+
+                    alert("Talep esnasında sorun oluştu.Yeniden deneyin");
+
+                }
+
+            });
+    </script>-->
+    <!--<script>
+            var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://localhost:44374/api/invitation/addd");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if ((this.readyState === XMLHttpRequest.DONE) && (this.status == 200) && (this.status < 300)) {
+                    alert("informations added.");
+                }
+            }
+            xhr.send("foo=bar&lorem=ipsum");
+            //xhr.send();
+    </script>-->
+
+    <!--<script>
+            //function callMethod() {
+            //    $.ajax({
+            //        url: "https://localhost:44374/api/invitation/addd",
+            //        data: {
+            //            name: $("#name").val(),
+            //            email: $("#email").val(),
+            //            participationStatus: $("#participationStatus").val()
+            //        },
+            //        type: "Post",
+            //        beforeSend: function () {
+            //            $("ajax-loader").show();
+            //        },
+            //        complete: function () {
+            //            $("ajax-loader").hide();
+            //        },
+            //        success: function () {
+            //            $("results").show();
+            //        },
+            //        error: function () {
+
+            //            alert("Talep esnasında sorun oluştu.Yeniden deneyin");
+
+            //        }
+            //    });
+            //}
+    </script>-->
+
+
+</body>
+</html>

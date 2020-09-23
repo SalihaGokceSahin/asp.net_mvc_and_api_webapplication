@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication_MVC_API", "WebApplication_MVC_API\WebApplication_MVC_API.csproj", "{6A061AB3-E908-4457-A5C1-413E61BDCE1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQueryApp", "JQueryApp\JQueryApp.csproj", "{73DD5D4A-A777-4A23-B359-E95554BCA408}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A061AB3-E908-4457-A5C1-413E61BDCE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A061AB3-E908-4457-A5C1-413E61BDCE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A061AB3-E908-4457-A5C1-413E61BDCE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A061AB3-E908-4457-A5C1-413E61BDCE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73DD5D4A-A777-4A23-B359-E95554BCA408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73DD5D4A-A777-4A23-B359-E95554BCA408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73DD5D4A-A777-4A23-B359-E95554BCA408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73DD5D4A-A777-4A23-B359-E95554BCA408}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6E0C08B-AD0D-483F-A5EC-AD3B8E67CC18}
+	EndGlobalSection
+EndGlobal
